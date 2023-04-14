@@ -10,7 +10,7 @@ function search() {
     fetch(file)
         .then(res => res.json())
         .then(data => {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < data.results.length; i++) {
                 imgArr[i] = data.results[i].image
                 document.getElementById('image_' + i).src = imgArr[i]
                 titleArr[i] = data.results[i].title
