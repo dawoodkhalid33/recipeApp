@@ -1,3 +1,30 @@
-h2{
-    text-align: center;
+body{
+    font-family: Arial, Helvetica, sans-serif;
 }
+.recipe{
+    text-align: center;
+    margin-bottom: 50px;
+    border: 1px solid red;
+    height: fit-content;
+    background-color: rgb(26, 25, 25);
+}
+img{
+    width: 60%;
+    height: 90%;
+}
+h2{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0%;
+    
+}
+
