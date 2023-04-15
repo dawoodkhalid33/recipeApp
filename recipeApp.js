@@ -1,4 +1,4 @@
-var imgArr = [], titleArr = [];
+var imgArr = [], titleArr = [], ingredientsArr = [];
 var userInput;
 button = document.getElementById('button');
 button.addEventListener("click", search)
@@ -41,8 +41,16 @@ function search() {
         fetch(recipeUrl)
           .then(res => res.json())
           .then(recipeData => {
-            console.log(recipeData.ingredients[1].name)
+            //code to get ingredients of every recipe
+            count = i+1;
+            console.log('ingredients for item number: '+count)
+            for (let j = 0; j < recipeData.ingredients.length; j++) {
+                console.log(recipeData.ingredients[j].name)
+            }
+           
+            
           })
+          break;
       }
     });
 }
