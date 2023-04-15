@@ -5,8 +5,9 @@ body{
     text-align: center;
     margin-bottom: 50px;
     border: 1px solid red;
-    height: fit-content;
+    height:max-content;
     background-color: rgb(26, 25, 25);
+    width: 25%;
 }
 img{
     width: 60%;
@@ -26,5 +27,11 @@ h2{
     justify-content: space-around;
     padding: 0%;
     
+}
+
+.ingredients>p{
+    margin: 0;
+    display: inline;
+    color: white;
 }
 
