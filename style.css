@@ -34,4 +34,22 @@ h2{
     display: inline;
     color: white;
 }
-
+.instruction-card{
+    border: 1px solid red;
+    margin-top: 5px;
+    display: none;
+    background-color: aquamarine;
+}
+/* #card-656329{
+    display: block;
+} */
+/* .instruction-button{
+    padding: 2rem;
+} */
+#instruction-656329{
+    background-color: chocolate;
+    padding: 0.2rem;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
