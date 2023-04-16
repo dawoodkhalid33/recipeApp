@@ -1,5 +1,5 @@
-var imgArr = [], titleArr = [], ingredientsArr = [];
-var userInput, recipeId, recipe;
+var imgArr = [], titleArr = [], ingredientsArr = [], idArr=[];
+var userInput, recipeId, recipe, card, button, count=0;
 button = document.getElementById('button');
 button.addEventListener("click", search)
 
@@ -14,9 +14,15 @@ function search() {
     mainElement.removeChild(recipeElements[i]);
   }
 
+  const body1 = document.body;
+  const cardElements = document.querySelectorAll('.instruction-card');
+  for (let i = 0; i < cardElements.length; i++) {
+    body1.removeChild(cardElements[i]);
+  }
+
   // Fetch new data based on user input
   userInput = document.getElementById('search').value;
-  file = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=428624ce5ace4b2ab69f01a82c044cf1&query=' + userInput;
+  file = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=6088876b2ec74127a1c5e7ea71098457&query=' + userInput;
   fetch(file)
     .then(res => res.json())
     .then(data => {
@@ -24,6 +30,7 @@ function search() {
       for (let i = 0; i < data.results.length; i++) {
 
         recipeId = data.results[i].id;
+        idArr.push(recipeId);
         const recipeElement = document.createElement('div');
         recipeElement.classList.add('recipe');
         recipeElement.id = 'recipe-'+recipeId;
@@ -52,7 +59,7 @@ function search() {
 
         mainElement.appendChild(recipeElement);
 
-        const recipeUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=428624ce5ace4b2ab69f01a82c044cf1`;
+        const recipeUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=6088876b2ec74127a1c5e7ea71098457`;
         fetch(recipeUrl)
           .then(res => res.json())
           .then(recipeData => {
@@ -65,51 +72,69 @@ function search() {
             }
             ingredientsElement.append(...ingredientElements);
           })
-          
-        const instUrl =  'https://api.spoonacular.com/recipes/'+recipeId+'/analyzedInstructions?apiKey=428624ce5ace4b2ab69f01a82c044cf1'
-        fetch(instUrl)
-    .then(resp => resp.json())
-    .then(instructions => {
-        for (let k = 0; k < instructions.length; k++) {
-            const card = document.createElement('div');
-            card.id = 'card-'+recipeId;
-            card.classList.add('instruction-card');
-            
-            const stepsLength = instructions[k].steps.length;
-            for (let m = 0; m < stepsLength; m++) {
-                const stepNumber = document.createElement('p');
-                stepNumber.classList.add('step-number');
-                stepNumber.textContent = instructions[k].steps[m].number;
-                card.appendChild(stepNumber);
-
-                const stepDescription = document.createElement('div');
-                stepDescription.classList.add('step-description');
-                stepDescription.textContent = instructions[k].steps[m].step;
-                card.appendChild(stepDescription);
-            }
-            document.body.appendChild(card); // add the card to the document
-        }
-    });
     
-    document.getElementById('instruction-'+recipeId).addEventListener('click', toggle);
-        function toggle() {
-            const cardElement = document.getElementById('card-' + recipeId);
-            if (cardElement.style.display === 'none') {
-            cardElement.style.display = 'block';
-            } else {
-            cardElement.style.display = 'none';
+        let myElement = document.getElementById('instruction-'+idArr[count])
+        myElement.addEventListener('click', toggle)
+        // function clicked(){
+        //     console.log(myElement.id);
+        // }
+        
+        async function toggle() {
+            const body1 = document.body;
+            const cardElements = document.querySelectorAll('.instruction-card');
+            for (let i = 0; i < cardElements.length; i++) {
+            body1.removeChild(cardElements[i]);
+            console.log("removing: "+i);
             }
+            console.log(myElement.id)
+            const instUrl =  'https://api.spoonacular.com/recipes/'+myElement.id.substring(12)+'/analyzedInstructions?apiKey=6088876b2ec74127a1c5e7ea71098457'
+            fetch(instUrl)
+            .then(resp => resp.json())
+            .then(instructions => {
+            card = document.createElement('div');
+                card.id = 'card-'+myElement.id;
+                card.classList.add('instruction-card');
+            for (let k = 0; k < instructions[0].steps.length; k++) {
+                console.log(instructions[0].steps[k].step);
+                
+
+                const stepNumber = document.createElement('p');
+                    stepNumber.classList.add('step-number');
+                    stepNumber.textContent = instructions[0].steps[k].number;
+                    card.appendChild(stepNumber);
+    
+                    const stepDescription = document.createElement('div');
+                    stepDescription.classList.add('step-description');
+                    stepDescription.textContent = instructions[0].steps[k].step;
+                    card.appendChild(stepDescription);
+                    
+
+            }  
+            document.body.appendChild(card); // add the card to the document
+            const cardElement = document.getElementById('card-' + myElement.id);
+            
+                    //if (cardElement.style.display === 'none') {
+                    cardElement.style.display = 'block';
+                    //} else {
+                    //cardElement.style.display = 'none';
+                    //}
+            })
         }
-//   break;
+         count +=1;
+        //break;
       }
     });
 }
 
-// const recipes = document.querySelectorAll('.instruction-button');
-// recipes.forEach((recipeElement) => {
-//   recipeElement.addEventListener('click', toggle);
+// const buttons = document.querySelectorAll('.instruction-button');
+// buttons.forEach(button1 => {
+//   button1.addEventListener('click', () => {
+//     const buttonId = button1.id;
+//     console.log('Button clicked:', buttonId);
+//   });
 // });
-// instruction_Button = 'instruction-'+recipeId;
+
+
 
 
 
