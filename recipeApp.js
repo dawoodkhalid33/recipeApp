@@ -84,9 +84,7 @@ function search() {
             const cardElements = document.querySelectorAll('.instruction-card');
             for (let i = 0; i < cardElements.length; i++) {
             body1.removeChild(cardElements[i]);
-            console.log("removing: "+i);
             }
-            console.log(myElement.id)
             const instUrl =  'https://api.spoonacular.com/recipes/'+myElement.id.substring(12)+'/analyzedInstructions?apiKey=6088876b2ec74127a1c5e7ea71098457'
             fetch(instUrl)
             .then(resp => resp.json())
