@@ -50,6 +50,11 @@ function search() {
         ingredientsElement.classList.add('ingredients');
         recipeElement.appendChild(ingredientsElement);
 
+        const ingredientsTitle = document.createElement('h3');
+        ingredientsTitle.classList.add('ingredients-title');
+        ingredientsTitle.textContent = "Ingredients:";
+        ingredientsElement.appendChild(ingredientsTitle);
+
         // Create new button for showing instructions
         const instructionButton = document.createElement('button');
         instructionButton.innerHTML = 'Show Instructions';
