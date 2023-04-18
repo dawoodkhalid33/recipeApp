@@ -27,7 +27,7 @@ function clearData() {
 }
 function getSearchData() {
   userInput = document.getElementById('search').value;
-file = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=8e785c77944c4fae8ae4277c451f727f&query=' + userInput;
+file = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=428624ce5ace4b2ab69f01a82c044cf1&query=' + userInput;
 fetch(file)
   .then(res => res.json())
   .then(data => {
@@ -77,7 +77,7 @@ fetch(file)
   });
 }
 function getIngredients(ingredientsElement) {
-  const recipeUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=8e785c77944c4fae8ae4277c451f727f`;
+  const recipeUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=428624ce5ace4b2ab69f01a82c044cf1`;
         fetch(recipeUrl)
           .then(res => res.json())
           .then(recipeData => {
@@ -107,7 +107,7 @@ function showInstructions() {
         }
 
 
-          const instUrl =  'https://api.spoonacular.com/recipes/'+myElement.id.substring(12)+'/analyzedInstructions?apiKey=8e785c77944c4fae8ae4277c451f727f'
+          const instUrl =  'https://api.spoonacular.com/recipes/'+myElement.id.substring(12)+'/analyzedInstructions?apiKey=428624ce5ace4b2ab69f01a82c044cf1'
           fetch(instUrl)
           .then(resp => resp.json())
           .then(instructions => {
@@ -115,7 +115,10 @@ function showInstructions() {
               card = document.createElement('div');
               card.id = 'card-'+myElement.id;
               card.classList.add('instruction-card');
-
+              const heading = document.createElement('h4');
+              heading.innerHTML='Instructions'
+              card.appendChild(heading);
+              console.log(instructions);
               for (let k = 0; k < instructions[0].steps.length; k++) {
 
                   const stepWrapper = document.createElement('div');
