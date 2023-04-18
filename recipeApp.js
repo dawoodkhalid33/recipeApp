@@ -111,43 +111,40 @@ function showInstructions() {
           fetch(instUrl)
           .then(resp => resp.json())
           .then(instructions => {
-
-
-              
   
-          card = document.createElement('div');
+              card = document.createElement('div');
               card.id = 'card-'+myElement.id;
               card.classList.add('instruction-card');
-          for (let k = 0; k < instructions[0].steps.length; k++) {
-              // console.log(instructions[0].steps[k].step);
-              
+
+              for (let k = 0; k < instructions[0].steps.length; k++) {
+
+                  const stepWrapper = document.createElement('div');
+                  stepWrapper.classList.add('step-wrapper');
   
-              const stepNumber = document.createElement('p');
+                  const stepNumber = document.createElement('p');
                   stepNumber.classList.add('step-number');
                   stepNumber.textContent = instructions[0].steps[k].number;
-                  card.appendChild(stepNumber);
+                  stepWrapper.appendChild(stepNumber);
   
                   const stepDescription = document.createElement('div');
                   stepDescription.classList.add('step-description');
                   stepDescription.textContent = instructions[0].steps[k].step;
-                  card.appendChild(stepDescription);
-                  
+                  stepWrapper.appendChild(stepDescription);
   
-          }  
-          document.body.appendChild(card); // add the card to the document
-          const cardElement = document.getElementById('card-' + myElement.id);
-          
-                  //if (cardElement.style.display === 'none') {
-                  cardElement.style.display = 'block';
-                  //} else {
-                  //cardElement.style.display = 'none';
-                  //}
-          })                
-
-    
-    //  count +=1;
+                  card.appendChild(stepWrapper);
+              }  
+              
+              document.body.appendChild(card); // add the card to the document
+              const cardElement = document.getElementById('card-' + myElement.id);
+              
+              cardElement.style.display = 'block';
+              cardElement.scrollIntoView(); // scroll to the instruction-card element
+              
+          })                    
 }
-        }
+}
+
+
           
 
 
