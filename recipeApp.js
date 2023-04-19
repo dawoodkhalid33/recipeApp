@@ -1,13 +1,13 @@
 var imgArr = [], titleArr = [], ingredientsArr = [], idArr=[];
 var instructions, userInput, recipeId, recipe, card, button, count=0, myElement, ingredientsElement, mainElement;
-button = document.getElementById('button');
-button.addEventListener("click", search)
+button = document.getElementById('form');
+button.addEventListener("submit", search)
+
 
 function search() {
   clearData();
   getSearchData();
 }
-
 
 function clearData() {
   titleArr = [];
@@ -145,6 +145,15 @@ function showInstructions() {
               
           })                    
 }
+}
+
+document.getElementById('recipes-link').addEventListener('click', getRandomRecipes);
+function getRandomRecipes() {
+  fetch('https://api.spoonacular.com/recipes/random?apiKey=428624ce5ace4b2ab69f01a82c044cf1&number=1')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.recipes[0]);
+    })
 }
 
 

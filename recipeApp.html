@@ -5,25 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Recipe App</title>
+    <link rel="icon" href="logo.jpg">
+    <title>Stirr</title>
 </head>
 <body>
     <header>
         <nav>
           <div class="logo">
-            <a href="#"><img src="logo.jpg" alt="Logo"></a>
+            <a href="#"><img src="logo-removebg-preview.png" alt="Logo"></a>
           </div>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Recipes</a></li>
+            <li id="recipes-link"><a href="#">Recipes</a></li>
             <li><a href="#">About</a></li>
           </ul>
         </nav>
     </header>
     <div class="search-bar">
         <h1>Search for delicious recipes</h1>
-        <input type="text" id="search" value="">
-        <button id="button">Search</button>
+        <form id="form" action="">
+            <input type="text" id="search" value="">
+            <button id="button" type="submit">Search</button>
+        </form>
+        
     </div>
        
     <div class="main">
