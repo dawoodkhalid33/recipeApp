@@ -76,7 +76,7 @@ fetch(file)
       showInstructions();
       count++;
 
-      break;      
+      // break;      
     }
   });
 }
