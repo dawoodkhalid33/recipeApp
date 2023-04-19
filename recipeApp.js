@@ -31,7 +31,7 @@ function clearData() {
 }
 function getSearchData() {
   userInput = document.getElementById('search').value;
-file = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=428624ce5ace4b2ab69f01a82c044cf1&query=' + userInput;
+file = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=292d6da42dbd4bc18b7709e107f4a45f&query=' + userInput;
 fetch(file)
   .then(res => res.json())
   .then(data => {
@@ -81,7 +81,7 @@ fetch(file)
   });
 }
 function getIngredients(ingredientsElement) {
-  const recipeUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=428624ce5ace4b2ab69f01a82c044cf1`;
+  const recipeUrl = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=292d6da42dbd4bc18b7709e107f4a45f`;
         fetch(recipeUrl)
           .then(res => res.json())
           .then(recipeData => {
@@ -111,7 +111,7 @@ function showInstructions() {
         }
 
 
-          const instUrl =  'https://api.spoonacular.com/recipes/'+myElement.id.substring(12)+'/analyzedInstructions?apiKey=428624ce5ace4b2ab69f01a82c044cf1'
+          const instUrl =  'https://api.spoonacular.com/recipes/'+myElement.id.substring(12)+'/analyzedInstructions?apiKey=292d6da42dbd4bc18b7709e107f4a45f'
           fetch(instUrl)
           .then(resp => resp.json())
           .then(instructions => {
@@ -129,7 +129,7 @@ function showInstructions() {
                   stepWrapper.classList.add('step-wrapper');
   
                   const stepNumber = document.createElement('p');
-                  stepNumber.classList.add('step-number');
+                  stepNumb292d6da42dbd4bc18b7709e107f4a45f
                   stepNumber.textContent = instructions[0].steps[k].number;
                   stepWrapper.appendChild(stepNumber);
   
@@ -151,14 +151,14 @@ function showInstructions() {
 }
 }
 
-document.getElementById('recipes-link').addEventListener('click', getRandomRecipes);
-function getRandomRecipes() {
-  fetch('https://api.spoonacular.com/recipes/random?apiKey=428624ce5ace4b2ab69f01a82c044cf1&number=1')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data.recipes[0]);
-    })
-}
+// document.getElementById('recipes-link').addEventListener('click', getRandomRecipes);
+// function getRandomRecipes() {
+//   fetch('https://api.spoonacular.com/recipes/random?apiKey=428624ce5ace4b2ab69f01a82c044cf1&number=1')
+//     .then(response => response.json())
+//     .then(data => {
+//       console.log(data.recipes[0]);
+//     })
+// }
 
 
           
