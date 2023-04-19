@@ -1,7 +1,11 @@
 var imgArr = [], titleArr = [], ingredientsArr = [], idArr=[];
 var instructions, userInput, recipeId, recipe, card, button, count=0, myElement, ingredientsElement, mainElement;
 button = document.getElementById('form');
-button.addEventListener("submit", search)
+button.addEventListener("submit", event=> {
+  event.preventDefault();
+  search();
+}
+)
 
 
 function search() {
